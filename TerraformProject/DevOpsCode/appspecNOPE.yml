@@ -1,0 +1,11 @@
+version: 0.0
+os: linux
+files:
+  - source: /ProductionCode
+    destination: /var/www/html
+  - source: /Scripts
+    destination: /var/www/html
+hooks:
+  BeforeInstall:
+    - location: /var/www/html/Scripts/ApplicationUpdate.sh
+      timeout: 360

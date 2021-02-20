@@ -1,0 +1,29 @@
+version: 0.2
+
+run-as: root
+        
+phases:
+  install:
+    run-as: root
+    runtime-versions:
+      python : 3.7
+    commands:
+      - cd /
+      - mkdir flaskApp
+      - cd flaskApp
+      - python3 -m venv venvProject1
+      - . venvProject1/bin/activate
+    finally:
+      - cd venvProject1
+      - pip install flask
+      - pip install flask-restplus
+  pre_build:
+    run-as: root
+    commands:
+      - 
+artifacts:
+  files:
+    - 'appspec.yml'
+    - 'Scripts/*'
+    - 'ProductionCode/**/*'
+  name: Build-Project-Webserver

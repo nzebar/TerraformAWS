@@ -1,0 +1,4 @@
+resource "aws_codecommit_repository" "Developers-Testing-Production-Repository" {
+  repository_name = "Developers-Testing-Production-Repository"
+  description     = "Commits made to the 'master' branch of this repositry will trigger a pull event from codebuild. CodeBuild will use the configurations in your 'buildspec.yml' file to build the environmentand perform tests before sending it to codedeploy for production deployment. CodeDeploy will then use the configurations in your 'appspec.yml' file to proceed with the CD process as you see fit.NOTE: By default, CodeBuild and CodeDeploy looks for their respective configuration files in the 'master' branch to use for their operations. There is a way to specify a different location for these files. Please, refer to the CodeBuild and CodeDeploy terraform documentation. NOTE: It is recommended you construct your branches as you see fit and avoid users adding direct input into the 'master' branch."
+}

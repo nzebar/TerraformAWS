@@ -1,0 +1,27 @@
+version: 0.0
+os: linux
+files:
+  - source: /ProductionCode/testing
+    destination: /var/www/html
+hooks:
+  BlockTraffic:
+    - location: Scripts/deregister_from_elb.sh
+      timeout: 600
+      runas: root
+  ApplicationStop:
+    - location: Scripts/stop_services.sh 
+    - location: Scripts/Application_Removal.sh
+      timeout: 600
+      runas: root
+  AfterInstall: 
+    - location: Scripts/File_Permissions.sh
+      timeout: 600
+      runas: root
+  ApplicationStart:
+    - location: Scripts/start_httpd.sh
+      timeout: 600
+      runas: root
+  AllowTraffic:
+    - location: Scripts/register_with_elb.sh
+      timeout: 600
+      runas: root
